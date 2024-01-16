@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            margin-bottom: 10px;
+        }
+        #message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Login Form</h2>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" required><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" required><br>
+        <button type="button" onclick="checkLogin()">Login</button>
+    </form>
+    <p id="message"></p>
+
+    <script>
+        // Sample list of valid usernames and passwords
+        const validCredentials = [
+            { username: 'admin', password: 'admin' },
+            { username: 'user2', password: 'pass456' },
+            // Add more credentials as needed
+        ];
+
+        function checkLogin() {
+            // Get entered username and password
+            const enteredUsername = document.getElementById('username').value;
+            const enteredPassword = document.getElementById('password').value;
+
+            // Check if entered credentials exist in the valid credentials list
+            const isValid = validCredentials.some(cred =>
+                cred.username === enteredUsername && cred.password === enteredPassword
+            );
+
+            // Display message based on the result
+            const messageElement = document.getElementById('message');
+            if (isValid) {
+                messageElement.style.color = 'green';
+                messageElement.textContent = 'Login successful!';
+            } else {
+                messageElement.style.color = 'red';
+                messageElement.textContent = 'Login error. Please check your username and password.';
+            }
+        }
+    </script>
+</body>
+</html>
